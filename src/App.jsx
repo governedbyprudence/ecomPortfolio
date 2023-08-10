@@ -1,20 +1,29 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import HomePage from "./core/routes/homepage";
+import { AllProductPage } from "./core/routes/products";
+import Navbar from "./core/components/navbar";
+import "./firebase-config.js";
+import { QueryClient,QueryClientProvider } from "@tanstack/react-query";
+import SingleProductPage from "./core/routes/singleProduct";
+
+
 export default function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <div className="grid grid-cols-4 gap-4">
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-    </div>
+   <QueryClientProvider client={queryClient}>
+    <Router>
+    <Navbar/>
+    <Routes>
+      <Route path="/" element={<HomePage/>}></Route>
+      <Route path="/products" element={<AllProductPage/>}></Route>
+      <Route path="/products/:productId" element={<SingleProductPage/>}></Route>
+    </Routes>
+   </Router>
+   </QueryClientProvider>
   )
 }
