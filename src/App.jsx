@@ -11,6 +11,7 @@ import { QueryClient,QueryClientProvider } from "@tanstack/react-query";
 import SingleProductPage from "./core/routes/singleProduct";
 
 import { ThemeProvider } from "@material-tailwind/react";
+import ContactPage from "./core/routes/contactpage";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ export default function App() {
       <Route path="/" element={<HomePage/>}></Route>
       <Route path="/products" element={<AllProductPage/>}></Route>
       <Route path="/products/:productId" element={<SingleProductPage/>}></Route>
+      <Route path="/contact" element={<ContactPage/>}></Route>
     </Routes>
    </Router>
    </QueryClientProvider>
