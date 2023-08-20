@@ -1,7 +1,7 @@
 import Product from "../components/product";
-import MediaQuery from "react-responsive";
 import {useQuery} from '@tanstack/react-query';
 import { getAllProducts } from "../api/firestore";
+import { CustomNavbar } from "../components/navbar";
 export const AllProductPage = ()=>{
     const {data,isLoading,isError} = useQuery(["allProducts"],getAllProducts);
     
@@ -13,11 +13,14 @@ export const AllProductPage = ()=>{
         return<>error</>
     }
     return (
-        <div>
-      {data.map((item) => (
-        <div key={item.id}><a href={`/products/${item.id}`}>{item.name}</a></div>
-      ))}
-    </div>
+       <div>
+        <CustomNavbar/>
+          <h1 className="text-2xl font-bold m-8">Our Products</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 m-8">
+          {data.map((e)=><Product/>)}
+
+        </div>
+     </div>
     );
 }
 

@@ -5,19 +5,20 @@ import {
 } from "react-router-dom";
 import HomePage from "./core/routes/homepage";
 import { AllProductPage } from "./core/routes/products";
-import Navbar from "./core/components/navbar";
+import {CustomNavbar} from "./core/components/navbar";
 import "./firebase-config.js";
 import { QueryClient,QueryClientProvider } from "@tanstack/react-query";
 import SingleProductPage from "./core/routes/singleProduct";
 
+import { ThemeProvider } from "@material-tailwind/react";
 
 export default function App() {
   const queryClient = new QueryClient();
 
   return (
-   <QueryClientProvider client={queryClient}>
+   <ThemeProvider>
+    <QueryClientProvider client={queryClient}>
     <Router>
-    <Navbar/>
     <Routes>
       <Route path="/" element={<HomePage/>}></Route>
       <Route path="/products" element={<AllProductPage/>}></Route>
@@ -25,5 +26,6 @@ export default function App() {
     </Routes>
    </Router>
    </QueryClientProvider>
+   </ThemeProvider>
   )
 }
