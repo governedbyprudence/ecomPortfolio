@@ -12,6 +12,7 @@ import SingleProductPage from "./core/routes/singleProduct";
 
 import { ThemeProvider } from "@material-tailwind/react";
 import ContactPage from "./core/routes/contactpage";
+import LoginPage from "./admin/routes/login";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -25,6 +26,9 @@ export default function App() {
       <Route path="/products" element={<AllProductPage/>}></Route>
       <Route path="/products/:productId" element={<SingleProductPage/>}></Route>
       <Route path="/contact" element={<ContactPage/>}></Route>
+
+        <Route path="admin/login" element={<LoginPage/>}></Route>
+    
     </Routes>
    </Router>
    </QueryClientProvider>
