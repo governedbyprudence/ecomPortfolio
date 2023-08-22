@@ -1,36 +1,84 @@
 import {HiChartPie,HiArchive} from 'react-icons/hi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { CustomNavbar } from '../../core/components/navbar';
+
+
+const AddProduct = () => {
+    const [images,setImages] = useState([]);
+    
+    function addImage(eventData){
+        setImages([...eventData.target.files]);
+    }
+
+    return (
+       <div className='mt-2 ml-5 p-4 '>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+        <div className=''>
+            <form>
+            <h4 className='text-sm my-4'>Name</h4>
+            <input type="text" className="p-4 bg-gray-100 rounded-xl" placeholder="Enter product name" />
+
+            <h4 className='text-sm my-4'>Description</h4>
+            <textarea className=" resize-none h-[140px] p-4 bg-gray-100 rounded-xl" placeholder="Enter product description"></textarea>
+
+            <h4 className='text-sm my-4'>Price</h4>
+            <input className="p-4 bg-gray-100 rounded-xl" type="number" placeholder="Enter product price" />
+
+            <h4 className='text-sm my-4'>Features</h4>
+            <input className="p-4 bg-gray-100 rounded-xl" placeholder="Enter product features"/>
+            </form>
+        </div>
+        <div>
+            <h4 className='text-sm py-4'>Add Images (Max 3)</h4>
+            <input id="img" className="hidden" type="file" multiple accept='images/*' placeholder='Upload Images' onChange={addImage}/>
+            <label for="img" className='text-xs p-2 rounded-lg bg-black text-white'>Choose Images</label>
+            <div className='grid grid-cols-2 gap-2 mt-4'>
+                {images.map(image=><img className="m-2 h-[100px] w-[100px]"src={URL.createObjectURL(image)}></img>)}
+            </div>
+        </div>
+       </div>
+       <div className='flex flex-row justify-center items-center h-20'>
+        <button className='rounded-md shadow-md w-[20vw] h-[30px] text-[10px] sm:text-[14px] bg-yellow-700 hover:bg-black text-white'>Save Product</button>
+       </div>
+       </div>
+    );
+}
+
 const DashboardPage = ()=> {
     const [index,setIndex] = useState(0);
     return(
-        <div>
-             <div id="nav" className="hidden md:flex flex-col bg-black text-white h-screen w-[200px] p-5">
+        <div className='min-w-screen min-h-screen'>
+            <div className='h-[50px] flex justify-center items-center bg-black text-white w-screen'>
+                <h1 className='text-xl font-semibold'>Admin Panel</h1>
+            </div>
+            <div className='flex flex-row flex-wrap'>
+             <div id="nav" className="hidden md:flex flex-col bg-gray-900 text-white min-h-screen w-[200px] p-5">
                 <div>
                     <h1 className="text-xl my-5 mx-2">Ozswell Industries</h1>
                 </div>
                 <ul>
                     <li>
-                    <button onClick={()=>setIndex(0)} className={`my-10 p-2 rounded-md flex items-center ${index==0?"bg-white text-black":"text-white"} text-lg ${index!=0?"hover:text-yellow-300":""}`}>
+                    <button onClick={()=>setIndex(0)} className={`my-10 px-4 py-2 rounded-md text-left flex items-center ${index==0?"bg-white text-black":"text-white"} text-lg ${index!=0?"hover:text-yellow-300":""}`}>
                         <span className="mr-2"><HiArchive size={20} /></span>
-                        <span>Add Product</span>
+                        <span className='text-[14px]'>Add Product</span>
                     </button>
                     </li>
                     <li>
-                    <button onClick={()=>setIndex(1)} className={`my-10 p-2 rounded-md flex items-center ${index==1?"bg-white text-black":"text-white"} text-lg ${index!=1?"hover:text-yellow-300":""}`}>
+                    <button onClick={()=>setIndex(1)} className={`my-10 px-4 py-2 rounded-md text-left flex items-center ${index==1?"bg-white text-black":"text-white"} text-lg ${index!=1?"hover:text-yellow-300":""}`}>
                         <span className="mr-2"><HiArchive size={20} /></span>
-                        <span>View Products</span>
+                        <span className='text-[14px]'>View Products</span>
                     </button>
                     </li>
                     <li>
-                    <button onClick={()=>setIndex(2)} className={`my-10 p-2 rounded-md flex items-center ${index==2?"bg-white text-black":"text-white"} text-lg ${index!=2?"hover:text-yellow-300":""}`}>
+                    <button onClick={()=>setIndex(2)} className={`my-10 px-4 py-2 rounded-md flex items-center ${index==2?"bg-white text-black":"text-white"} text-lg ${index!=2?"hover:text-yellow-300":""}`}>
                         <span className="mr-2"><HiChartPie size={20} /></span>
-                        <span>Analytics</span>
+                        <span className='text-[14px]'>Analytics</span>
                     </button>
                     </li>
                 
                 </ul>
              </div>
-             <div id="nav" className="flex md:hidden flex-col bg-black text-white h-screen w-[100px] p-5">
+             <div id="nav-small" className="flex min-h-screen md:hidden flex-col bg-black text-white w-[100px] p-5">
                 <div>
                     <h1 className="text-sm font-bold my-5">Ozswell Industries</h1>
                 </div>
@@ -50,9 +98,12 @@ const DashboardPage = ()=> {
                         <span className="mr-2"><HiChartPie size={20} /></span>
                     </button>
                     </li>
-                
                 </ul>
              </div>
+             <div className='flex-1 flex-wrap'>
+                    {index==0?<AddProduct/>:<></>}
+            </div>
+        </div>
         </div>
     );
 }
