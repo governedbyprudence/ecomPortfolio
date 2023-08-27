@@ -18,16 +18,16 @@ const AddProduct = () => {
         <div className=''>
             <form>
             <h4 className='text-sm my-4'>Name</h4>
-            <input type="text" className="p-4 bg-gray-100 rounded-xl" placeholder="Enter product name" />
+            <input type="text" className="p-4 bg-gray-100 rounded-xl min-w-[90%]" placeholder="Enter product name" />
 
             <h4 className='text-sm my-4'>Description</h4>
-            <textarea className=" resize-none h-[140px] p-4 bg-gray-100 rounded-xl" placeholder="Enter product description"></textarea>
+            <textarea className=" resize-none h-[140px] p-4 bg-gray-100 rounded-xl min-w-[90%]" placeholder="Enter product description"></textarea>
 
             <h4 className='text-sm my-4'>Price</h4>
-            <input className="p-4 bg-gray-100 rounded-xl" type="number" placeholder="Enter product price" />
+            <input className="p-4 bg-gray-100 rounded-xl min-w-[90%]" type="number" placeholder="Enter product price" />
 
             <h4 className='text-sm my-4'>Features</h4>
-            <input className="p-4 bg-gray-100 rounded-xl" placeholder="Enter product features"/>
+            <input className="p-4 bg-gray-100 rounded-xl min-w-[90%]" placeholder="Enter product features"/>
             </form>
         </div>
         <div>
