@@ -3,8 +3,8 @@ const TestimonialCard = (props)=>{
     const feedback=props.feedback;
     const author = props.author;
     return (
-        <div className=" bg-gray-200 rounded-md min-h-[350px] m-10 p-10 shadow-md" >
-            <h1 className="py-4 min-h-[250px] font-thin">{feedback}</h1>
+        <div className=" bg-gray-200 rounded-md min-h-[250px] m-10 p-10 shadow-md" >
+            <h1 className="py-4 min-h-[150px] font-thin text-xs md:text-md xl:text-lg">{feedback}</h1>
             <h6 className="text-sm">{author}</h6>
         </div>
     );
@@ -12,8 +12,8 @@ const TestimonialCard = (props)=>{
 
 function Testimonials (){
     return (
-        <div className="min-h-[600px] px-20 lg:px-40 py-10">
-            <h1 className="text-2xl my-4 font-bold">Testimonials</h1>
+        <div className="min-h-[600px] min-w-full lg:px-20 xl:px-40 py-10 text-center">
+            <h1 className="text-2xl my-4 mx-4 font-bold">Testimonials</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <TestimonialCard author="TechMax Solutions" feedback="Ozswell Industries consistently delivers the most innovative electronics we’ve ever encountered. They’re an absolute must for any tech-savvy shopper!"/>
             <TestimonialCard author="Varsity Inc" feedback="Their equipment have taken our company to new heights. We can’t imagine our lives before Ozswell Industries!"/>
