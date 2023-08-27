@@ -1,8 +1,10 @@
 import {HiChartPie,HiArchive} from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import { CustomNavbar } from '../../core/components/navbar';
-
-
+import {MdPreview} from "react-icons/md";
+import {AiFillEdit} from 'react-icons/ai';
+import { useQuery } from '@tanstack/react-query';
+import { getAllProducts } from '../../core/api/firestore';
 const AddProduct = () => {
     const [images,setImages] = useState([]);
     
@@ -44,7 +46,43 @@ const AddProduct = () => {
     );
 }
 
+
+const ProductList = (props) =>{
+    const products = props.products;
+    return (
+        <div className='p-4'>
+            <div className="overflow-x-auto text-[10px] md:text-sm lg:text-md text-center">
+               <table className='min-w-full min-h-full'>
+                <thead>
+                <tr className="border-b">
+                    <th className='px-2 py-4'>Name</th>
+                    <th className='px-2 py-4'>Description</th>
+                    <th className='px-2 py-4'>Price</th>
+                    <th className='px-2 py-4'>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {
+                        products.map((e)=>
+                        <tr className="border-b" key={e}>
+                        <th className='py-4'>{e.name}</th>
+                        <td className='py-4'>{e.description}</td>
+                        <td className='py-4'>{e.price}</td>
+                        <td className='py-2'><div className=' inline-flex'><MdPreview size={30}/><AiFillEdit size={30}/></div></td>
+
+                        </tr>
+                        )
+                    }
+                </tbody>
+               </table>
+            </div>
+        </div>
+    )
+} 
+ 
 const DashboardPage = ()=> {
+    const {data,isLoading,isError} = useQuery(["allProducts"],getAllProducts);
+    
     const [index,setIndex] = useState(0);
     return(
         <div className='min-w-screen min-h-screen'>
@@ -101,11 +139,13 @@ const DashboardPage = ()=> {
                 </ul>
              </div>
              <div className='flex-1 flex-wrap'>
-                    {index==0?<AddProduct/>:<></>}
+                    {index==0?<AddProduct/>:index==1?<ProductList products={data}/>:<></>}
             </div>
         </div>
         </div>
     );
 }
+
+
 
 export default DashboardPage;
