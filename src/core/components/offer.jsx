@@ -30,7 +30,7 @@ function OfferBanner ()
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default OfferBanner;
